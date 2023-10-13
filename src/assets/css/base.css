@@ -1,0 +1,82 @@
+@import url('./global.css');
+@import url('./normalize.css');
+@import url('../font/font.css');
+@import url('../font/iconfont.css');
+
+
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #ccc;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+i,
+tr,
+.buttons div {
+  cursor: pointer;
+}
+
+.buttons div {
+  background-color: #fff;
+}
+
+.buttons div:hover {
+  filter: brightness(0.97);
+}
+
+/*:root -> 获取根元素html*/
+:root {
+  --color-text: #666;
+  --color-high-text: #317ffb;
+  --color-tint: #51d9fb;
+  --color-background: #fff;
+  --font-size: 14px;
+  --line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Harmony Font';
+  user-select: none; /* 禁止用户鼠标在页面上选中文字/图片等 */
+  -webkit-tap-highlight-color: transparent; /* webkit是苹果浏览器引擎，tap点击，highlight背景高亮，color颜色，颜色用数值调节 */
+  background: var(--color-background);
+  color: var(--color-text);
+  /* rem vw/vh */
+  min-width: 1000px;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+div,span{
+  font-family: 'Harmony Font';
+  box-sizing: border-box;
+}
+
+
+

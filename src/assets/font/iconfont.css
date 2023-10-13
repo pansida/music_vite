@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4252344 */
+  src: url('iconfont.woff2?t=1694681277421') format('woff2'),
+       url('iconfont.woff?t=1694681277421') format('woff'),
+       url('iconfont.ttf?t=1694681277421') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont";
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-31huidaodingbu:before {
+  content: "\e600";
+}
+
+.icon-upload:before {
+  content: "\e75d";
+}
+
+.icon-pinglun:before {
+  content: "\e607";
+}
+
+.icon-shezhi:before {
+  content: "\e68f";
+}
+
+.icon-weibiaoti519:before {
+  content: "\e616";
+}
+
+.icon-xihuan:before {
+  content: "\e86f";
+}
+
+.icon-bofang:before {
+  content: "\e87c";
+}
+
+.icon-fanhuijiantou:before {
+  content: "\e8b5";
+}
+
+.icon-close:before {
+  content: "\e62d";
+}
+
+.icon-suijisenlin:before {
+  content: "\e60e";
+}
+
+.icon-24gl-playlist:before {
+  content: "\ea6f";
+}
+
+.icon-24gl-repeatOnce2:before {
+  content: "\ea75";
+}
+
+.icon-shangyishou:before {
+  content: "\e63c";
+}
+
+.icon-xiayishou:before {
+  content: "\e63e";
+}
+
+.icon-xie:before {
+  content: "\e60f";
+}
+
+.icon-close1:before {
+  content: "\e608";
+}
+
+.icon-sixin:before {
+  content: "\e628";
+}
+
+.icon-gedan:before {
+  content: "\e636";
+}
+
+.icon-yinle:before {
+  content: "\e90e";
+}
+
+.icon-zhuanfa:before {
+  content: "\e635";
+}
+
+.icon-download:before {
+  content: "\e66c";
+}
+
+.icon-good:before {
+  content: "\e673";
+}
+
+.icon-link:before {
+  content: "\e676";
+}
+
+.icon-help:before {
+  content: "\e677";
+}
+
+.icon-notification:before {
+  content: "\e679";
+}
+
+.icon-mic:before {
+  content: "\e678";
+}
+
+.icon-more:before {
+  content: "\e67a";
+}
+
+.icon-arrow-left-bold:before {
+  content: "\e685";
+}
+
+.icon-arrow-up-bold:before {
+  content: "\e686";
+}
+
+.icon-arrow-down-bold:before {
+  content: "\e687";
+}
+
+.icon-arrow-right-bold:before {
+  content: "\e688";
+}
+
+.icon-xunhuan:before {
+  content: "\e60a";
+}
+
+.icon-clothes:before {
+  content: "\e8c7";
+}
+
+.icon-soound-min:before {
+  content: "\ea7e";
+}
+
+.icon-duanshipinhuati:before {
+  content: "\e876";
+}
+
