@@ -11,10 +11,14 @@
     </div>
     <div class="div_search">
       <SearchOutlined />
-      <!-- <input type="text" placeholder="请输入内容"> -->
       <el-input v-model="input" placeholder="请输入内容" @focus="handleFocus" />
       <div class="model" v-if="openSearch" v-click-outside="handleOutSide">
-
+        <template v-if="!input">
+          <span class="hotHeader">热搜榜</span>
+          <div v-for="(item, index) in searchList" :key="index">
+            {{ item.searchWord }}
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -73,12 +77,13 @@ import avatarurl from "@/assets/img/test.jpg"
 import Modal from "./Modal/Modal.vue";
 import { qr, captcha } from "@/request/Login/index"
 import { userInfo } from "@/request/UserInfo/index"
+import { musicInfo } from "@/request/Music/index"
 import { SearchOutlined } from "@ant-design/icons-vue"
 import { message } from "ant-design-vue";
 import { ref, reactive, onMounted } from 'vue';
 import { useHeaderStore } from "@/store/header"
 import { useRouter } from "vue-router"
-const isopens = ref(true)
+const searchList = ref<any>([])
 const isopen = ref(false)
 const openSearch = ref(false)
 const input = ref("")
@@ -124,29 +129,38 @@ const init = async () => {
   await checkQrCode();
 }
 onMounted(async () => {
-  if (!headerStore.isLogin) {
-    console.log(headerStore.isLogin);
+  const info = await userInfo.getAccountInfo(true)
+  if (info.profile !== null) {
+    Useravatarurl.value = info.profile.avatarUrl
+    nickname.value = info.profile.nickname
+  }else{
+    headerStore.isLogin = false
+    headerStore.id = ''
     init()
   }
-  const info = await userInfo.getAccountInfo()
-  Useravatarurl.value = info.profile.avatarUrl
-  nickname.value = info.profile.nickname
+  handleSerchList()
 }
 )
 
 // 输入框聚焦触发
 const handleFocus = async () => {
-    openSearch.value = true
-    isopen.value = true
+  openSearch.value = true
+  isopen.value = true
 }
 // 
 const handleOutSide = () => {
   if (isopen.value) {
     isopen.value = false
   } else {
-    openSearch.value = false
+      openSearch.value = false
   }
 
+}
+
+const handleSerchList = async()=>{
+  const res =await musicInfo.getSearchList()
+  searchList.value = res.data
+  console.log(searchList.value);
 }
 
 const getQrCodeKey = async () => {
@@ -159,7 +173,6 @@ const checkQrCode = async () => {
   timer.value = setInterval(async () => {
     if (!timer.value || headerStore.isLogin) return
     const status = await qr.generateStatus(key.value)
-    console.log(status);
     if (status === 800) {
       // 二维码过期
       clearInterval(timer.value)
@@ -168,15 +181,12 @@ const checkQrCode = async () => {
     } else if (status === 803) {
       clearInterval(timer.value)
       timer.value = null
-      const res = await userInfo.getAccountInfo()
+      const res = await userInfo.getAccountInfo(true)
       if (res.code === 200) {
         headerStore.id = res.profile.userId
         message.success("登录成功！")
         headerStore.isLogin = true
         Useravatarurl.value = res.profile.avatarUrl
-        console.log("登录状态：" + headerStore.isLogin);
-        console.log("用户id：" + headerStore.id);
-        console.log("头像图片：" + Useravatarurl.value);
 
       }
     }
@@ -276,6 +286,11 @@ const hide = () => {
     border-radius: 20px;
     padding: 10px;
     position: relative;
+    .hotHeader{
+      color: #828181;
+      font-size: 16px;
+      padding: 0 15px;
+    }
   }
 }
 
@@ -362,10 +377,11 @@ const hide = () => {
 .model {
   width: 300px;
   height: 500px;
-  background-color: red;
+  background-color: #ffffff;
   position: absolute;
   top: 35px;
   left: -5px;
   border-radius: 10px;
+  overflow: auto;
 }
 </style>

@@ -5,7 +5,8 @@ import {useHeaderStore} from "@/store/header"
 const headerStore = useHeaderStore()
 
 const instance = axios.create({
-    baseURL: '/api',
+    baseURL: 'https://cloud.pansida.cn',
+    // baseURL: '/api',
     timeout:30000,
     withCredentials:true,
 })

@@ -8,8 +8,8 @@ interface userInfo{
 }
 
 export const userInfo = {
-    getAccountInfo:async()=>{
-        const info = await axios.get(`/user/account?timestamp=${Date.now()}`)
+    getAccountInfo:async(istmp:boolean=false)=>{
+        const info = await axios.get(`/user/account${istmp?'?tmp='+Date.now():''}`)
         return info.data
       },
       getstatus:async()=>{

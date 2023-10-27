@@ -80,5 +80,9 @@ export const musicInfo= {
   getComment:async (type:number,id:string,content:string,timestamp=false,commentId='',t=1)=>{
     const comment = await axios.get(`/comment?t=${t}&type=${type}&id=${id}&content=${content}${commentId?`&commentId=${commentId}`:''}${timestamp?`&timestamp=${Date.now()}`:''}`)
     return comment.data
+  },
+  getSearchList:async ()=>{
+    const searchList = await axios.get('/search/hot/detail')
+    return searchList.data
   }
 };
