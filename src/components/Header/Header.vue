@@ -16,7 +16,13 @@
         <template v-if="!input">
           <span class="hotHeader">热搜榜</span>
           <div v-for="(item, index) in searchList" :key="index">
-            {{ item.searchWord }}
+            <div class="item_list" :class="[(index < 3 ? 'active' : ''), (item.content ? 'large' : 'mouse')]">
+              <span>{{ index + 1 }}</span>
+              <div class="item_right">
+                <div :class="item.content ? 'serchWords' : 'serchWord'">{{ item.searchWord }}</div>
+                <div class="content" v-if="item.content">{{ item.content }}</div>
+              </div>
+            </div>
           </div>
         </template>
       </div>
@@ -133,7 +139,7 @@ onMounted(async () => {
   if (info.profile !== null) {
     Useravatarurl.value = info.profile.avatarUrl
     nickname.value = info.profile.nickname
-  }else{
+  } else {
     headerStore.isLogin = false
     headerStore.id = ''
     init()
@@ -152,13 +158,13 @@ const handleOutSide = () => {
   if (isopen.value) {
     isopen.value = false
   } else {
-      openSearch.value = false
+    openSearch.value = false
   }
 
 }
 
-const handleSerchList = async()=>{
-  const res =await musicInfo.getSearchList()
+const handleSerchList = async () => {
+  const res = await musicInfo.getSearchList()
   searchList.value = res.data
   console.log(searchList.value);
 }
@@ -286,7 +292,8 @@ const hide = () => {
     border-radius: 20px;
     padding: 10px;
     position: relative;
-    .hotHeader{
+
+    .hotHeader {
       color: #828181;
       font-size: 16px;
       padding: 0 15px;
@@ -384,4 +391,75 @@ const hide = () => {
   border-radius: 10px;
   overflow: auto;
 }
-</style>
+
+.item_list {
+  display: flex;
+  cursor: pointer;
+
+  &.mouse {
+    height: 40px;
+  }
+
+  &.large {
+    height: 64px;
+  }
+
+  &.active {
+    span {
+      color: #e13e3e;
+    }
+  }
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+
+  span {
+    font-size: 18px;
+    color: #8d8f91;
+    display: flex;
+    width: 20px;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .item_right {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 252px;
+    justify-content: center;
+
+    div.serchWords {
+      height: 40%;
+      margin-bottom: -10px;
+    }
+
+    div.serchWord {
+      height: 100%;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+    }
+  }
+
+  .content {
+    display: inline-block !important;
+    width: 252px;
+    color: #8d8f91;
+    height: 32px;
+    line-height: 32px;
+    font-size: 12px;
+    font-weight: 100;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+  }
+}</style>
